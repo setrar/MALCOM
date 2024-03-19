@@ -72,7 +72,7 @@ To illustrate Jensen's inequality with a simple example, consider the convex fun
 
 $f\left(\frac{a + b}{2}\right) \leq \frac{f(a) + f(b)}{2}$
 
-Substituting \(f(x) = x^2\) yields:
+Substituting $f(x) = x^2$ yields:
 
 $\left(\frac{a + b}{2}\right)^2 \leq \frac{a^2 + b^2}{2}$
 
