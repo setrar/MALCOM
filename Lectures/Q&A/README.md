@@ -43,13 +43,13 @@ Jensen's inequality is a fundamental result in convex analysis, offering powerfu
 ### Statement of Jensen's Inequality
 Let \(f\) be a convex function defined on an interval \(I\) of the real line, and let \(X\) be a random variable taking values in \(I\). Jensen's inequality states that:
 
-\[f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]\]
+$f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]$
 
 where \(\mathbb{E}[X]\) denotes the expectation (or mean) of \(X\).
 
 For a concave function \(f\), the inequality is reversed:
 
-\[f(\mathbb{E}[X]) \geq \mathbb{E}[f(X)]\]
+$f(\mathbb{E}[X]) \geq \mathbb{E}[f(X)]$
 
 ### Intuition and Interpretation
 The essence of Jensen's inequality lies in the idea that for a convex function, the function value of the mean of a set of points is less than or equal to the mean of the function values of those points. This can be visualized as the function "lying below" the secant line connecting two points on its graph. The inequality highlights a fundamental property of convex functions: they "average out" inputs in a way that the output is minimized compared to the average output for individual inputs.
@@ -70,11 +70,11 @@ For concave functions, the opposite is true, reflecting that such functions "amp
 ### Example
 To illustrate Jensen's inequality with a simple example, consider the convex function \(f(x) = x^2\). Take two points, \(a\) and \(b\), and their average, \(\frac{a + b}{2}\). Applying Jensen's inequality:
 
-\[f\left(\frac{a + b}{2}\right) \leq \frac{f(a) + f(b)}{2}\]
+$f\left(\frac{a + b}{2}\right) \leq \frac{f(a) + f(b)}{2}$
 
 Substituting \(f(x) = x^2\) yields:
 
-\[\left(\frac{a + b}{2}\right)^2 \leq \frac{a^2 + b^2}{2}\]
+$\left(\frac{a + b}{2}\right)^2 \leq \frac{a^2 + b^2}{2}$
 
 This inequality holds true and demonstrates how the square of the average of two numbers is less than or equal to the average of their squares, highlighting the convex nature of the squaring function.
 
