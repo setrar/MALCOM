@@ -41,13 +41,13 @@ Graphical models have found applications across a broad spectrum of fields, incl
 Jensen's inequality is a fundamental result in convex analysis, offering powerful insights into the behavior of convex and concave functions. It has wide-ranging applications in economics, optimization, statistics, and various fields of mathematics. Here's a breakdown of what Jensen's inequality is and why it's important:
 
 ### Statement of Jensen's Inequality
-Let \(f\) be a convex function defined on an interval \(I\) of the real line, and let \(X\) be a random variable taking values in \(I\). Jensen's inequality states that:
+Let $f$ be a convex function defined on an interval $I$ of the real line, and let $X$ be a random variable taking values in $I$. Jensen's inequality states that:
 
 $f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]$
 
 where $\mathbb{E}[X]$ denotes the expectation (or mean) of $X$.
 
-For a concave function \(f\), the inequality is reversed:
+For a concave function $f$, the inequality is reversed:
 
 $f(\mathbb{E}[X]) \geq \mathbb{E}[f(X)]$
 
