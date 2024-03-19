@@ -68,7 +68,7 @@ For concave functions, the opposite is true, reflecting that such functions "amp
 5. **Machine Learning**: It's applied in deriving and understanding algorithms, especially in the context of regularization and loss functions.
 
 ### Example
-To illustrate Jensen's inequality with a simple example, consider the convex function \(f(x) = x^2\). Take two points, \(a\) and \(b\), and their average, \(\frac{a + b}{2}\). Applying Jensen's inequality:
+To illustrate Jensen's inequality with a simple example, consider the convex function $f(x) = x^2$. Take two points, $a$ and $b$, and their average, $\frac{a + b}{2}$. Applying Jensen's inequality:
 
 $f\left(\frac{a + b}{2}\right) \leq \frac{f(a) + f(b)}{2}$
 
