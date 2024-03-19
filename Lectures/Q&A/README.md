@@ -45,7 +45,7 @@ Let \(f\) be a convex function defined on an interval \(I\) of the real line, an
 
 $f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]$
 
-where \(\mathbb{E}[X]\) denotes the expectation (or mean) of \(X\).
+where $\mathbb{E}[X]$ denotes the expectation (or mean) of $X$.
 
 For a concave function \(f\), the inequality is reversed:
 
