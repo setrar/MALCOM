@@ -1,41 +1,73 @@
-from __future__ import print_function
-
 from builtins import range
-from six.moves import cPickle as pickle
+#from past.builtins import xrange
+
+from math import sqrt, ceil
 import numpy as np
-import os
-# from scipy.misc import imread
-import platform
 
-def load_pickle(f):
-    version = platform.python_version_tuple()
-    if version[0] == '2':
-        return  pickle.load(f)
-    elif version[0] == '3':
-        return  pickle.load(f, encoding='latin1')
-    raise ValueError("invalid python version: {}".format(version))
+def visualize_grid(Xs, ubound=255.0, padding=1):
+    """
+    Reshape a 4D tensor of image data to a grid for easy visualization.
 
-def load_CIFAR_batch(filename):
-    """ load single batch of cifar """
-    with open(filename, 'rb') as f:
-        datadict = load_pickle(f)
-        X = datadict['data']
-        Y = datadict['labels']
-        X = X.reshape(10000, 3, 32, 32).transpose(0,2,3,1).astype("float")
-        Y = np.array(Y)
-        return X, Y
+    Inputs:
+    - Xs: Data of shape (N, H, W, C)
+    - ubound: Output grid will have values scaled to the range [0, ubound]
+    - padding: The number of blank pixels between elements of the grid
+    """
+    (N, H, W, C) = Xs.shape
+    grid_size = int(ceil(sqrt(N)))
+    grid_height = H * grid_size + padding * (grid_size - 1)
+    grid_width = W * grid_size + padding * (grid_size - 1)
+    grid = np.zeros((grid_height, grid_width, C))
+    next_idx = 0
+    y0, y1 = 0, H
+    for y in range(grid_size):
+        x0, x1 = 0, W
+        for x in range(grid_size):
+            if next_idx < N:
+                img = Xs[next_idx]
+                low, high = np.min(img), np.max(img)
+                grid[y0:y1, x0:x1] = ubound * (img - low) / (high - low)
+                # grid[y0:y1, x0:x1] = Xs[next_idx]
+                next_idx += 1
+            x0 += W + padding
+            x1 += W + padding
+        y0 += H + padding
+        y1 += H + padding
+    # grid_max = np.max(grid)
+    # grid_min = np.min(grid)
+    # grid = ubound * (grid - grid_min) / (grid_max - grid_min)
+    return grid
 
-def load_CIFAR10(ROOT):
-    """ load all of cifar """
-    xs = []
-    ys = []
-    for b in range(1,6):
-        f = os.path.join(ROOT, 'data_batch_%d' % (b, ))
-        X, Y = load_CIFAR_batch(f)
-        xs.append(X)
-        ys.append(Y)
-    Xtr = np.concatenate(xs)
-    Ytr = np.concatenate(ys)
-    del X, Y
-    Xte, Yte = load_CIFAR_batch(os.path.join(ROOT, 'test_batch'))
-    return Xtr, Ytr, Xte, Yte
+def vis_grid(Xs):
+    """ visualize a grid of images """
+    (N, H, W, C) = Xs.shape
+    A = int(ceil(sqrt(N)))
+    G = np.ones((A*H+A, A*W+A, C), Xs.dtype)
+    G *= np.min(Xs)
+    n = 0
+    for y in range(A):
+        for x in range(A):
+            if n < N:
+                G[y*H+y:(y+1)*H+y, x*W+x:(x+1)*W+x, :] = Xs[n,:,:,:]
+                n += 1
+    # normalize to [0,1]
+    maxg = G.max()
+    ming = G.min()
+    G = (G - ming)/(maxg-ming)
+    return G
+
+def vis_nn(rows):
+    """ visualize array of arrays of images """
+    N = len(rows)
+    D = len(rows[0])
+    H,W,C = rows[0][0].shape
+    Xs = rows[0][0]
+    G = np.ones((N*H+N, D*W+D, C), Xs.dtype)
+    for y in range(N):
+        for x in range(D):
+            G[y*H+y:(y+1)*H+y, x*W+x:(x+1)*W+x, :] = rows[y][x]
+    # normalize to [0,1]
+    maxg = G.max()
+    ming = G.min()
+    G = (G - ming)/(maxg-ming)
+    return G
