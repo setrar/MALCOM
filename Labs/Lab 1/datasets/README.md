@@ -24,4 +24,4 @@ cifar-10-python.tar.gz.1               100%[====================================
 
 - [ ] [UofT's Alex Krizhevsky's home page](http://www.cs.toronto.edu/~kriz/cifar.html)
 
-Note: The files are not uploaded to github
+Note: The files are not uploaded to github :x:
