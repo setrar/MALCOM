@@ -8,5 +8,5 @@
 
 - [ ] &#x1F4C1; malcom
 
-[two_layer_net-checkpoint.ipynb](two_layer_net-checkpoint.ipynb)
-[two_layer_net.ipynb](two_layer_net-checkpoint.ipynb)
+- [ ] [two_layer_net-checkpoint.ipynb](two_layer_net-checkpoint.ipynb)
+- [ ] [two_layer_net.ipynb](two_layer_net-checkpoint.ipynb)
