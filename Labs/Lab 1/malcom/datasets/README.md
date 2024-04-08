@@ -88,6 +88,13 @@ x cifar-10-batches-mat/data_batch_3.mat
 x cifar-10-batches-mat/data_batch_4.mat
 ```
 
+### :x: Not saved to `github`
+
+```
+cat .gitignore
+```
+> cifar-10-*
+
 # References
 
 - [ ] [UofT's Alex Krizhevsky's home page](http://www.cs.toronto.edu/~kriz/cifar.html)
