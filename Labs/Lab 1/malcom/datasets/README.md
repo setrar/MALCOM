@@ -98,5 +98,6 @@ cat .gitignore
 # References
 
 - [ ] [UofT's Alex Krizhevsky's home page](http://www.cs.toronto.edu/~kriz/cifar.html)
+- [ ] [Showing images from CIFAR-10 with Plots.jl](https://discourse.julialang.org/t/showing-images-from-cifar-10-with-plots-jl/58143)
 
 Note: The files are not uploaded to github :x:
