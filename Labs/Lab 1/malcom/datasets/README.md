@@ -1,6 +1,9 @@
 ### CIFAR-10 Data Loading
 
-We will now train the implemented neural network in a real dataset, the widely used CIFAR-10. You can download this dataset at: https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz Then, you can put it in the folder malcom/datasets (or anywhere else you want, but then you will need to change the path in the below code).
+### :a: Python Version
+
+We will now train the implemented neural network in a real dataset, the widely used CIFAR-10. You can download this dataset at: `https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz` Then, you can put it in the folder malcom/datasets (or anywhere else you want, but then you will need to change the path in the below code).
+
 
 - [ ] Download the compressed tar file from the UofT's server
 
@@ -39,6 +42,51 @@ x cifar-10-batches-py/data_batch_5
 x cifar-10-batches-py/data_batch_1
 ```
 
+### :b: Matlab Version
+
+We will now train the implemented neural network in a real dataset, the widely used CIFAR-10. You can download this dataset at: `https://www.cs.toronto.edu/~kriz/cifar-10-matlab.tar.gz` Then, you can put it in the folder malcom/datasets (or anywhere else you want, but then you will need to change the path in the below code).
+
+
+- [ ] Download the compressed tar file from the UofT's server
+
+```
+wget https://www.cs.toronto.edu/~kriz/cifar-10-matlab.tar.gz
+```
+> Returns
+```powershell
+--2024-04-08 21:16:13--  https://www.cs.toronto.edu/~kriz/cifar-10-matlab.tar.gz
+Resolving www.cs.toronto.edu (www.cs.toronto.edu)... 128.100.3.30
+Connecting to www.cs.toronto.edu (www.cs.toronto.edu)|128.100.3.30|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 183434414 (175M) [application/x-gzip]
+Saving to: ‘cifar-10-matlab.tar.gz’
+
+cifar-10-matlab.tar.gz          100%[======================================================>] 174.94M  26.2MB/s    in 7.5s    
+
+2024-04-08 21:16:21 (23.3 MB/s) - ‘cifar-10-matlab.tar.gz’ saved [183434414/183434414]
+
+FINISHED --2024-04-08 21:16:21--
+Total wall clock time: 8.2s
+Downloaded: 1 files, 175M in 7.5s (23.3 MB/s)
+```
+
+- [ ] Decompress the file
+
+```
+tar zxvf cifar-10-matlab.tar.gz
+```
+> Returns
+```powershell
+x cifar-10-batches-mat/
+x cifar-10-batches-mat/data_batch_1.mat
+x cifar-10-batches-mat/batches.meta.mat
+x cifar-10-batches-mat/data_batch_5.mat
+x cifar-10-batches-mat/data_batch_2.mat
+x cifar-10-batches-mat/test_batch.mat
+x cifar-10-batches-mat/readme.html
+x cifar-10-batches-mat/data_batch_3.mat
+x cifar-10-batches-mat/data_batch_4.mat
+```
 
 # References
 
