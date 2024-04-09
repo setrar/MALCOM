@@ -82,6 +82,10 @@ class TwoLayerNet(object):
         # *****START OF YOUR CODE*****
         
         pass
+        # Compute the forward pass
+        hidden_layer = np.maximum(0, np.dot(X, W1) + b1)  # ReLU activation
+        scores = np.dot(hidden_layer, W2) + b2
+
         
         # *****END OF YOUR CODE*****
 
@@ -101,6 +105,13 @@ class TwoLayerNet(object):
         # *****START OF YOUR CODE*****
         
         pass
+        # Compute the loss
+        shift_scores = scores - np.max(scores, axis=1, keepdims=True)
+        softmax_outputs = np.exp(shift_scores) / np.sum(np.exp(shift_scores), axis=1, keepdims=True)
+        correct_class_probabilities = -np.log(softmax_outputs[range(N), y])
+        data_loss = np.sum(correct_class_probabilities) / N
+        reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
+        loss = data_loss + reg_loss
     
         # *****END OF YOUR CODE*****
 
@@ -176,6 +187,13 @@ class TwoLayerNet(object):
             # *****START OF YOUR CODE*****
             
             pass
+            # Compute the loss
+            shift_scores = scores - np.max(scores, axis=1, keepdims=True)
+            softmax_outputs = np.exp(shift_scores) / np.sum(np.exp(shift_scores), axis=1, keepdims=True)
+            correct_class_probabilities = -np.log(softmax_outputs[range(N), y])
+            data_loss = np.sum(correct_class_probabilities) / N
+            reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
+            loss = data_loss + reg_loss
         
             # *****END OF YOUR CODE*****
 

@@ -11,3 +11,6 @@
 - [ ] Jupyter Lab files
   - [ ] [two_layer_net-checkpoint.ipynb](two_layer_net-checkpoint.ipynb)
   - [ ] [two_layer_net.ipynb](two_layer_net-checkpoint.ipynb)
+
+
+https://www.cs.toronto.edu/~kriz/cifar-10-matlab.tar.gz
