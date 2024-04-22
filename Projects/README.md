@@ -16,6 +16,7 @@ $$
 \begin{gather}
 s \in \mathcal{M} = \\{ 1, ..., M \\}, k = log_2 M \\
 x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n
+x \in \mathbb{C}^n \quad 
 \end{gather}
 $$
 
