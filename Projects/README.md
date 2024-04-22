@@ -15,6 +15,6 @@ The goal is to minimize the probability of making an error =>  Goal: Minimise $P
 $$
 \begin{gather}
 s \in \mathcal{M} = \\{ 1, ..., M \\}, k = log_2 M \\
-x \in \mathbb{C}^n with \mathbb{C}[]
+x \in \mathbb{C}^n with E[||x||^2]
 \end{gather}
 $$
