@@ -13,7 +13,7 @@
 
 The goal is to minimize the probability of making an error =>  Goal: Minimise $Pr( \hat{S} \neq S)$
 
-```math
+$$
 \begin{gather}
 \bullet \quad s \in \mathcal{M} = \\{ 1, ..., M \\}, k = log_2 M \\
 \bullet \quad x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n \qquad  \\
@@ -21,7 +21,7 @@ The goal is to minimize the probability of making an error =>  Goal: Minimise $P
 \bullet \quad \hat{s}  \in \mathcal{M} \qquad \qquad \qquad \qquad \qquad \quad \\
 \bullet \quad R = \frac{k}{n} \text{ bits/channel use} \quad Rate
 \end{gather}
-```
+$$
 
 
 $x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n$
