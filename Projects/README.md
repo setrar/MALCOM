@@ -13,5 +13,7 @@
 The goal is to minimize the probability of making an error =>  Goal: Minimise $Pr( \hat{S} \neq S)$
 
 $$
-* s \in \mathcal{M} = \\{ 1, ..., M \\}, k = log_2 M
+\begin{gather}
+s \in \mathcal{M} = \\{ 1, ..., M \\}, k = log_2 M
+\end{gather}
 $$
