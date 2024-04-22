@@ -16,7 +16,8 @@ $$
 \begin{gather}
 s \in \mathcal{M} = \\{ 1, ..., M \\}, k = log_2 M \\
 x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n \\
-y \in \mathbb{C}^n \quad \sim p(y|x)
+y \in \mathbb{C}^n \quad \sim p(y|x) \\
+\hat{s} 
 \end{gather}
 $$
 
