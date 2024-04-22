@@ -19,7 +19,7 @@ $$
 \bullet \quad x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n \qquad  \\
 \bullet \quad y \in \mathbb{C}^n \quad \sim p(y|x) \qquad \qquad \qquad  \\
 \bullet \quad \hat{s}  \in \mathcal{M} \qquad \qquad \qquad \qquad \qquad \\
-\bullet \quad R = \frac{k}{n} \text{ bits/channel use} \quad \text{ # Rate }
+\bullet \quad R = \frac{k}{n} \text{ bits/channel use} \quad \text{ - Rate }
 \end{gather}
 $$
 
