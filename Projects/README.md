@@ -24,10 +24,10 @@ $$
 
 $x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n$
 
-This expression describes a mathematical condition involving a vector \( x \) in the field of complex numbers:
+This expression describes a mathematical condition involving a vector $x$ in the field of complex numbers:
 
-- \( x \in \mathbb{C}^n \): This denotes that \( x \) is a vector with \( n \) components, each of which is a complex number. The \( \mathbb{C}^n \) represents an \( n \)-dimensional complex vector space.
+- $x \in \mathbb{C}^n$: This denotes that $x$ is a vector with $n$ components, each of which is a complex number. The $\mathbb{C}^n$ represents an $n$-dimensional complex vector space.
 
-- \( E[||x||^2] \leq n \): Here, \( E \) is the expected value operator (mean), and \( ||x||^2 \) represents the squared Euclidean norm (or squared magnitude) of the vector \( x \). The condition states that the expected value of the squared norm of \( x \) is less than or equal to \( n \). 
+- $E[||x||^2] \leq n$: Here, $E$ is the expected value operator (mean), and $||x||^2$ represents the squared Euclidean norm (or squared magnitude) of the vector $x$. The condition states that the expected value of the squared norm of $x$ is less than or equal to $n$. 
 
-This kind of condition might arise in signal processing or communications, where \( x \) could represent a signal vector, and the condition imposes a constraint on the average power of the signal (since the squared norm is a measure of power in this context). The constraint essentially says that the average power of the vector \( x \) is limited to \( n \), which could be interpreted as the signal vector having an average power of at most 1 per dimension, assuming \( n \) is the number of dimensions.
+This kind of condition might arise in signal processing or communications, where $x$ could represent a signal vector, and the condition imposes a constraint on the average power of the signal (since the squared norm is a measure of power in this context). The constraint essentially says that the average power of the vector $x$ is limited to $n$, which could be interpreted as the signal vector having an average power of at most 1 per dimension, assuming $n$ is the number of dimensions.
