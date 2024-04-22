@@ -15,10 +15,10 @@ The goal is to minimize the probability of making an error =>  Goal: Minimise $P
 $$
 \begin{gather}
 s \in \mathcal{M} = \\{ 1, ..., M \\}, k = log_2 M \\
-x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n \\
-y \in \mathbb{C}^n \quad \sim p(y|x) \\
-\hat{s}  \in \mathcal{M} \\
-R = \frac{k}{n} \qquad \text{ Rate = bits/ per channel}
+x \in \mathbb{C}^n \quad with \quad E[||x||^2] \leq n \qquad \qquad \qquad \\
+y \in \mathbb{C}^n \quad \sim p(y|x) \qquad \qquad \qquad \qquad \\
+\hat{s}  \in \mathcal{M} \qquad \qquad \qquad \qquad \qquad \\
+R = \frac{k}{n} \qquad \text{ Rate = bits/channel use}
 \end{gather}
 $$
 
