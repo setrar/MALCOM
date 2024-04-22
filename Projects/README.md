@@ -4,6 +4,7 @@
 
 # References
 
+ - [ ] [Ep 30. The Sionna Library for Link-Level Simulations (With Jakob Hoydis) [Wireless Future Podcast]](https://www.youtube.com/watch?v=NcQL9vY3ENA)
  - [ ] [Jakob Hoydis - Recent Progress in End-to-End Learning for the Physical Layer](https://www.youtube.com/watch?v=EPLJzsxReH4)
 
 <img src=images/Jacob-Hoydis-presentation.png width='75%' height='75%' > </img>
