@@ -2,6 +2,8 @@
 
 <img src=images/emnist_download.png width='' height='' > </img>
 
+- [ ] [torch.utils.data](https://pytorch.org/docs/stable/data.html)
+
 # References
 
 - [ ] import [convnets](https://pypi.org/project/convnets/)
