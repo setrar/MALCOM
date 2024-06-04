@@ -1,3 +1,7 @@
+#
+
+<img src=images/emnist_download.png width='' height='' > </img>
+
 # References
 
 - [ ] import [convnets](https://pypi.org/project/convnets/)
@@ -39,3 +43,5 @@ Successfully built progress-table
 Installing collected packages: progress-table, resnets
 Successfully installed progress-table-2.2.4 resnets-0.0.1
 ```
+
+- [ ] [Clustered Federated Learning: Model-Agnostic Distributed Multi-Task Optimization under Privacy Constraints](https://github.com/felisat/clustered-federated-learning)
