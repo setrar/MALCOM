@@ -6,7 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #from past.builtins import xrange
-
 class TwoLayerNet(object):
     """
     This class constructs a two-layer fully-connected neural network. The network has an input dimension of
@@ -80,13 +79,10 @@ class TwoLayerNet(object):
         # shape (N,C).                                                              #
         #############################################################################
         # *****START OF YOUR CODE*****
-        
-        pass
-        # Compute the forward pass
+
         hidden_layer = np.maximum(0, np.dot(X, W1) + b1)  # ReLU activation
         scores = np.dot(hidden_layer, W2) + b2
 
-        
         # *****END OF YOUR CODE*****
 
         # If the targets are not given then jump out, we are done
@@ -103,16 +99,13 @@ class TwoLayerNet(object):
         # classifier loss.                                                          #
         #############################################################################
         # *****START OF YOUR CODE*****
-        
-        pass
-        # Compute the loss
+
         shift_scores = scores - np.max(scores, axis=1, keepdims=True)
         softmax_outputs = np.exp(shift_scores) / np.sum(np.exp(shift_scores), axis=1, keepdims=True)
         correct_class_probabilities = -np.log(softmax_outputs[range(N), y])
         data_loss = np.sum(correct_class_probabilities) / N
         reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
         loss = data_loss + reg_loss
-    
         # *****END OF YOUR CODE*****
 
         # Backward pass: compute gradients
@@ -125,8 +118,17 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE*****
         
-        pass
-    
+        softmax_outputs[range(N), y] -= 1
+        softmax_outputs /= N
+
+        grads['W2'] = np.dot(hidden_layer.T, softmax_outputs) + 2 * reg * W2
+        grads['b2'] = np.sum(softmax_outputs, axis=0)
+
+        hidden_grad = np.dot(softmax_outputs, W2.T)
+        hidden_grad[hidden_layer <= 0] = 0
+
+        grads['W1'] = np.dot(X.T, hidden_grad) + 2 * reg * W1
+        grads['b1'] = np.sum(hidden_grad, axis=0)
         # *****END OF YOUR CODE*****
 
         return loss, grads
@@ -169,9 +171,11 @@ class TwoLayerNet(object):
             # them in X_batch and y_batch respectively.                             #
             #########################################################################
             # *****START OF YOUR CODE*****
-            
-            pass
-        
+
+            batch_indices = np.random.choice(num_train, batch_size)
+            X_batch = X[batch_indices]
+            y_batch = y[batch_indices]
+
             # *****END OF YOUR CODE*****
 
             # Compute loss and gradients using the current minibatch
@@ -185,17 +189,22 @@ class TwoLayerNet(object):
             # stored in the grads dictionary defined above.                         #
             #########################################################################
             # *****START OF YOUR CODE*****
-            
-            pass
-            # Compute the loss
+
             shift_scores = scores - np.max(scores, axis=1, keepdims=True)
             softmax_outputs = np.exp(shift_scores) / np.sum(np.exp(shift_scores), axis=1, keepdims=True)
             correct_class_probabilities = -np.log(softmax_outputs[range(N), y])
             data_loss = np.sum(correct_class_probabilities) / N
             reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
             loss = data_loss + reg_loss
-        
+
+            # Use the gradients in the grads dictionary to update the parameters
+            self.params['W1'] -= learning_rate * grads['W1']
+            self.params['b1'] -= learning_rate * grads['b1']
+            self.params['W2'] -= learning_rate * grads['W2']
+            self.params['b2'] -= learning_rate * grads['b2']
+
             # *****END OF YOUR CODE*****
+
 
             if verbose and it % 100 == 0:
                 print('iteration %d / %d: loss %f' % (it, num_iters, loss))
@@ -232,15 +241,16 @@ class TwoLayerNet(object):
           the elements of X. For all i, y_pred[i] = c means that X[i] is predicted
           to have class c, where 0 <= c < C.
         """
+
         y_pred = None
 
         ###########################################################################
         # TODO: Implement this function; it should be very simple!                #
         ###########################################################################
         # *****START OF YOUR CODE*****
-
-        pass
-    
+        hidden_layer = np.maximum(0, np.dot(X, self.params['W1']) + self.params['b1'])
+        scores = np.dot(hidden_layer, self.params['W2']) + self.params['b2']
+        y_pred = np.argmax(scores, axis=1)
         # *****END OF YOUR CODE*****
 
         return y_pred

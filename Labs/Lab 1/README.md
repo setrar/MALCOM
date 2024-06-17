@@ -14,3 +14,7 @@
 
 
 https://www.cs.toronto.edu/~kriz/cifar-10-matlab.tar.gz
+
+# References
+
+https://cs231n.github.io/
