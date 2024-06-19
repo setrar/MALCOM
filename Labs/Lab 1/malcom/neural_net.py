@@ -80,8 +80,13 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE*****
 
-        hidden_layer = np.maximum(0, np.dot(X, W1) + b1)  # ReLU activation
-        scores = np.dot(hidden_layer, W2) + b2
+        # the forward pass
+        fc1 = X.dot(W1) + b1 # fc1: Computes the output of the first fully connected layer 
+        # Applies the ReLU activation function element-wise to the output of fc1.
+        X2 = self.ReLU(fc1)   # b1 (1*H) expand it to N*H
+        # Computes the scores for each class 𝑋2⋅𝑊2+𝑏2, 
+        # where each row corresponds to a sample and each column corresponds to a class.
+        scores = np.dot(X2, W2) + b2    # b2 (1*C) expand it to H*C
 
         # *****END OF YOUR CODE*****
 
@@ -100,12 +105,27 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE*****
 
-        shift_scores = scores - np.max(scores, axis=1, keepdims=True)
-        softmax_outputs = np.exp(shift_scores) / np.sum(np.exp(shift_scores), axis=1, keepdims=True)
-        correct_class_probabilities = -np.log(softmax_outputs[range(N), y])
-        data_loss = np.sum(correct_class_probabilities) / N
-        reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
-        loss = data_loss + reg_loss
+        # shift_scores = scores - np.max(scores, axis=1, keepdims=True)
+        # softmax_outputs = np.exp(shift_scores) / np.sum(np.exp(shift_scores), axis=1, keepdims=True)
+        # correct_class_probabilities = -np.log(softmax_outputs[range(N), y])
+        # data_loss = np.sum(correct_class_probabilities) / N
+        # reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
+        # loss = data_loss + reg_loss
+
+        # Loss Calculation:
+        scores -= np.max(scores, axis=1, keepdims=True) # avoid numeric instability
+        scores_exp = np.exp(scores)
+    
+        # Softmax: Normalizes the scores into probabilities using the softmax function.
+        softmax_matrix = scores_exp / np.sum(scores_exp, axis=1, keepdims=True) 
+    
+        # Cross-Entropy Loss: Computes the average negative log probability of the correct class label y.
+        loss = np.sum(-np.log(softmax_matrix[np.arange(N), y]))
+        loss /= N
+    
+        # Regularization Loss: Adds the L2 regularization term to penalize large weights W1 and W2.
+        loss += reg * (np.sum(W2 * W2) + np.sum( W1 * W1 )) # regularization
+
         # *****END OF YOUR CODE*****
 
         # Backward pass: compute gradients
@@ -117,26 +137,42 @@ class TwoLayerNet(object):
         # grads['W1'] should store the gradient on W1, and be a matrix of same size #
         #############################################################################
         # *****START OF YOUR CODE*****
-        
-        softmax_outputs[range(N), y] -= 1
-        softmax_outputs /= N
 
-        grads['W2'] = np.dot(hidden_layer.T, softmax_outputs) + 2 * reg * W2
-        grads['b2'] = np.sum(softmax_outputs, axis=0)
-
-        hidden_grad = np.dot(softmax_outputs, W2.T)
-        hidden_grad[hidden_layer <= 0] = 0
-
-        grads['W1'] = np.dot(X.T, hidden_grad) + 2 * reg * W1
-        grads['b1'] = np.sum(hidden_grad, axis=0)
+        # Softmax Gradient: Computes the gradient of the softmax output with respect to the scores.
+        softmax_matrix[np.arange(N) ,y] -= 1
+        softmax_matrix /= N
+    
+        # Gradient of Parameters: Computes gradients of W2, b2, W1, and b1 using chain rule and backpropagation.
+    
+        # W2 gradient
+        dW2 = X2.T.dot(softmax_matrix)   # [HxN] * [NxC] = [HxC]
+    
+        # b2 gradient
+        db2 = softmax_matrix.sum(axis=0)
+    
+        # W1 gradient
+        dW1 = softmax_matrix.dot(W2.T)   # [NxC] * [CxH] = [NxH]
+        dfc1 = dW1 * (fc1>0)             # [NxH] . [NxH] = [NxH]
+        dW1 = X.T.dot(dfc1)              # [DxN] * [NxH] = [DxH]
+    
+        # b1 gradient
+        db1 = dfc1.sum(axis=0)
+    
+        # Regularization Gradient: Adds the gradient of the regularization term to the gradients of W1 and W2.
+        dW1 += reg * 2 * W1
+        dW2 += reg * 2 * W2
+    
+        grads = {'W1':dW1, 'b1':db1, 'W2':dW2, 'b2':db2}
         # *****END OF YOUR CODE*****
 
         return loss, grads
+
 
     def train(self, X, y, X_val, y_val,
               learning_rate=1e-3, learning_rate_decay=0.95,
               reg=5e-6, num_iters=100,
               batch_size=200, verbose=False):
+        
         """
         Train this neural network using stochastic gradient descent (SGD).
 
@@ -190,21 +226,10 @@ class TwoLayerNet(object):
             #########################################################################
             # *****START OF YOUR CODE*****
 
-            shift_scores = scores - np.max(scores, axis=1, keepdims=True)
-            softmax_outputs = np.exp(shift_scores) / np.sum(np.exp(shift_scores), axis=1, keepdims=True)
-            correct_class_probabilities = -np.log(softmax_outputs[range(N), y])
-            data_loss = np.sum(correct_class_probabilities) / N
-            reg_loss = reg * (np.sum(W1 * W1) + np.sum(W2 * W2))
-            loss = data_loss + reg_loss
-
-            # Use the gradients in the grads dictionary to update the parameters
-            self.params['W1'] -= learning_rate * grads['W1']
-            self.params['b1'] -= learning_rate * grads['b1']
-            self.params['W2'] -= learning_rate * grads['W2']
-            self.params['b2'] -= learning_rate * grads['b2']
+            for key in self.params:
+                self.params[key] -= learning_rate * grads[key]
 
             # *****END OF YOUR CODE*****
-
 
             if verbose and it % 100 == 0:
                 print('iteration %d / %d: loss %f' % (it, num_iters, loss))
@@ -248,9 +273,15 @@ class TwoLayerNet(object):
         # TODO: Implement this function; it should be very simple!                #
         ###########################################################################
         # *****START OF YOUR CODE*****
-        hidden_layer = np.maximum(0, np.dot(X, self.params['W1']) + self.params['b1'])
+
+        hidden_layer = self.ReLU(np.dot(X, self.params['W1']) + self.params['b1'])
         scores = np.dot(hidden_layer, self.params['W2']) + self.params['b2']
         y_pred = np.argmax(scores, axis=1)
+
         # *****END OF YOUR CODE*****
 
         return y_pred
+
+    def ReLU(self, x):
+        """ReLU non-linearity."""
+        return np.maximum(0, x)
