@@ -40,8 +40,10 @@ end
 𝓕⁻¹ = ifft # Inverse Fourier Transform types \bscrF\^-\^1
 argmax = findmax # Alias used for MLE search 
 
-Re = real # Real Part Function to extract real number from Complex Number
-Im = imag # Imaginary Part Function to extract imaginary part from Complex Number
+ℜ = real # Real Part Function to extract real number from Complex Number \frakR
+ℑ = imag # Imaginary Part Function to extract imaginary part from Complex Number \frakI
+
+j = √Complex(-1)
 
 |  = abs
 |₂ = norm
