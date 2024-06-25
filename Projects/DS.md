@@ -1,3 +1,4 @@
+```vhdl
 library ieee;
 use ieee.numeric_bit_unsigned.all;
 
@@ -37,7 +38,9 @@ begin
     end if;
   end process;
 end architecture rtl;
+```
 
+```vhdl
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -99,7 +102,9 @@ begin
 	end process;
 
 end architecture rtl;
+```
 
+```vhdl
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -165,3 +170,4 @@ begin
 	end process;
 
 end architecture rtl;
+```
