@@ -66,3 +66,11 @@ The methods to maximize mutual information depend largely on the context and spe
 - Employing algorithms specifically designed for mutual information maximization, like those found in machine learning for feature extraction or complex system optimization.
 
 In practical terms, to apply these concepts, one would often rely on statistical or computational methods to estimate and maximize mutual information from empirical data or simulated models.
+
+# References
+
+- [ ] Concatenate PDF Files
+
+```
+"/System/Library/Automator/Combine PDF Pages.action/Contents/MacOS/join" -o ~/Desktop/REPORT.pdf ~/Desktop/REPORT0.pdf ~/Desktop/REPORT1.pdf ~/Desktop/REPORT2.pdf
+```
